@@ -1,11 +1,13 @@
 package com.bank.web.domain;
 
+import com.bank.web.util.Constants;
+
 public class AccountBean {
 	// 멤버필드(멤버변수를 정의한 영역)
 	// 멤변은 초기화를 하지 않는다. 지변과의 차이점
 	// 멤변은 메소드 밖에 위치하며 메소드를 사이에서 값을 공유한다
 	// POJO plain old java object
-	public static String BANK = "한빛뱅크";
+
 	private int accountNo;
 	private String name;
 	private int money;
@@ -49,7 +51,7 @@ public class AccountBean {
 
 	@Override
 	public String toString() {
-		return "[" + BANK + "] " + this.name + " : " + this.accountNo + "계좌, 잔고 " + this.money + "원";
+		return "[" + Constants.BANK + "] " + this.name + " : " + this.accountNo + "계좌, 잔고 " + this.money + "원";
 	}
 	
 	
