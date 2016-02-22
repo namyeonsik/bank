@@ -1,7 +1,7 @@
-	private int ;
+	private int accountNo;
 	private String name;
-	private int ;
-	private int ;
+	private int money;
+	private int password;
 	
 CREATE SEQUENCE seq
 -- INCREMENT BY 1 증감숫자이며 1씩 증가시킬 때는 생략이 가능하다
@@ -20,7 +20,7 @@ CREATE TABLE account(
 	CONSTRAINT account_member_fk
 	FOREIGN KEY(userid)
 	REFERENCES member(userid)
-);
+);	
 
 INSERT INTO account(seq,accountNo,money,password,userid) VALUES(
 	seq.NEXTVAL, 1000, 10000, 1, 'kim'

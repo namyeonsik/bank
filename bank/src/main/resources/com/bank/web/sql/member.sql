@@ -1,5 +1,5 @@
 select * from test;
---실행 단축키 : ALT + X
+-- 실행 단축키 : ALT + X
 
 SELECT * FROM member;
 
