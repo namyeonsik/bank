@@ -2,17 +2,20 @@ package com.bank.web.controller;
 
 import java.util.Scanner;
 
-import com.bank.web.domain.MemberBean;
+import org.springframework.stereotype.Controller;
+
+import com.bank.web.domain.MemberVO;
 import com.bank.web.service.MemberService;
 import com.bank.web.serviceImpl.MemberServiceImpl;
 
+@Controller
 public class MemberController {
 
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
 		MemberService service = new MemberServiceImpl();
-		MemberBean member = null;
+		MemberVO member = null;
 		
 		while (true) {
 			System.out.println("[업무선택]\n"
@@ -27,7 +30,7 @@ public class MemberController {
 			switch (sc.nextInt()) {
 			case 1:
 				System.out.println("아이디, 이름, 비밀번호, 주소, 생일 :");
-				member = new MemberBean();
+				member = new MemberVO();
 				member.setUserid(sc.next());
 				member.setName(sc.next());
 				member.setPassword(sc.next());
@@ -42,7 +45,7 @@ public class MemberController {
 				break;
 			case 3:
 				System.out.println("이름 입력 :");
-				MemberBean[] members = service.searchByName(sc.next());
+				MemberVO[] members = service.searchByName(sc.next());
 				for (int i = 0; i < members.length; i++) {
 					System.out.println("[정보조회] " + members[i]);
 				}

@@ -1,11 +1,14 @@
 package com.bank.web.serviceImpl;
 
-import com.bank.web.domain.AccountBean;
+import org.springframework.stereotype.Service;
+
+import com.bank.web.domain.AccountVO;
 import com.bank.web.service.AccountService;
 
+@Service
 public class AccountServiceImpl implements AccountService{
 
-	AccountBean account = new AccountBean();
+	AccountVO account = new AccountVO();
 	
 	/*@Override
 	public String open(String name, int password) {

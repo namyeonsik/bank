@@ -1,8 +1,11 @@
 package com.bank.web.domain;
 
+import org.springframework.stereotype.Component;
+
 import com.bank.web.util.Constants;
 
-public class AccountBean {
+@Component
+public class AccountVO {
 	// 멤버필드(멤버변수를 정의한 영역)
 	// 멤변은 초기화를 하지 않는다. 지변과의 차이점
 	// 멤변은 메소드 밖에 위치하며 메소드를 사이에서 값을 공유한다
@@ -14,7 +17,7 @@ public class AccountBean {
 	private int password;
 	
 	// 멤버메소드 에어리어(멤버메소드를 정의한 영역)
-	public AccountBean(){	// 생성자
+	public AccountVO(){	// 생성자
 		// 4자리 수의 랜덤한 숫자
 		accountNo = (int) (Math.random()*9000) + 1000;
 	}

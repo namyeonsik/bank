@@ -2,10 +2,13 @@ package com.bank.web.controller;
 
 import java.util.Scanner;
 
-import com.bank.web.domain.AccountBean;
+import org.springframework.stereotype.Controller;
+
+import com.bank.web.domain.AccountVO;
 import com.bank.web.service.AdminService;
 import com.bank.web.serviceImpl.AdminServiceImpl;
 
+@Controller
 public class AdminController {
 
 	public static void main(String[] args) {
@@ -37,7 +40,7 @@ public class AdminController {
 				break;
 			case 4:
 				System.out.println("조회하려는 이름 입력 :");
-				AccountBean[] accounts = service.searchAccountByName(sc.next());
+				AccountVO[] accounts = service.searchAccountByName(sc.next());
 				for (int i = 0; i < accounts.length; i++) {
 					System.out.println(accounts[i]);
 				}

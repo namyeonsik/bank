@@ -1,19 +1,22 @@
 package com.bank.web.serviceImpl;
 
-import com.bank.web.domain.AccountBean;
+import org.springframework.stereotype.Service;
+
+import com.bank.web.domain.AccountVO;
 import com.bank.web.service.AdminService;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
 	// 멤변이 모여 있는 이 곳은 필드
 	private int count; 
-	private AccountBean[] accountList;
+	private AccountVO[] accountList;
 	// 멤버변수이지만 초기값이 필요한 경우에는 줄 수 있다
 	// 초기화는 동작이며, 동작(기능)은 메소드 담당
 	// 메소드 에어리어
-	public AdminServiceImpl(){
-		count = 0;
-		accountList = new AccountBean[100];
+	public AdminServiceImpl(){}
+	public AdminServiceImpl(int count){
+		accountList = new AccountVO[count];
 	}
 	
 	public int getCount() {
@@ -24,11 +27,11 @@ public class AdminServiceImpl implements AdminService {
 		this.count = count;
 	}
 
-	public AccountBean[] getAcbean() {
+	public AccountVO[] getAcbean() {
 		return accountList;
 	}
 
-	public void setAcbean(AccountBean[] acbeanList) {
+	public void setAcbean(AccountVO[] acbeanList) {
 		this.accountList = acbeanList;
 	}
 	@Override
@@ -39,7 +42,7 @@ public class AdminServiceImpl implements AdminService {
 		// 추가되는 개념으로 코딩하려면 지역벼수로 처리하고
 		// 자료구조(컬렉션)를 필드에 선언해야 한다.
 
-		AccountBean account = new AccountBean();
+		AccountVO account = new AccountVO();
 		account.setName(name);
 		account.setPassword(password);
 		accountList[count] = account;
@@ -54,9 +57,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public AccountBean searchAccountByAccountNo(int accountNo) {
+	public AccountVO searchAccountByAccountNo(int accountNo) {
 		// 2. 계좌번호로 해당 계좌 정보 조회
-		AccountBean account = null;	
+		AccountVO account = null;	
 		// 이 라인에서 account는 인스턴스 개념이 아니라
 		// 리턴을받는 타입
 		
@@ -69,9 +72,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public AccountBean[] searchAccountByName(String name) {
+	public AccountVO[] searchAccountByName(String name) {
 		// 3. 이름으로 계좌 정보 조회
-		AccountBean[] tempList = new AccountBean[this.searchCountByName(name)];
+		AccountVO[] tempList = new AccountVO[this.searchCountByName(name)];
 		int j=0;
 	
 		for (int i = 0; i < this.getCount(); i++) {
@@ -86,7 +89,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public String closeAccount(int accountNo) {
 		// 4. 계좌 삭제
-		AccountBean tempAccount = null;
+		AccountVO tempAccount = null;
 		String result = "";
 		
 		if(this.searchAccountByAccountNo(accountNo) != null){
