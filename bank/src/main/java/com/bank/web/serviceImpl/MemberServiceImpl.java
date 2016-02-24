@@ -37,9 +37,7 @@ public class MemberServiceImpl implements MemberService{
    public MemberVO login(MemberVO member) {
       // 로그인
       MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-      member = mapper.selectMember(member);
-
-      return member;
+      return mapper.selectMember(member);
    }
 
    @Override
@@ -50,10 +48,10 @@ public class MemberServiceImpl implements MemberService{
    }
    
    @Override
-   public String join(MemberVO member) {
+   public int join(MemberVO member) {
       // 회원가입
-      map.put(member.getUserid(), member);
-      return member.getName() + "회원 가입을 축하드립니다.";
+	   MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+	   return mapper.insertMember(member);
    }
 
    @Override

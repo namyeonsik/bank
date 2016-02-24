@@ -32,32 +32,32 @@
 				<fieldset class="joinField">
 					<div class="form-group">
 						<span class="input_box">
-							<input type="text" class="form-control" id="userid" placeholder="아이디" maxlength="20" />
+							<input type="text" class="form-control" name="userid" id="userid" placeholder="아이디" maxlength="20" />
 						</span>
 					</div>
 					<div class="form-group">
 						<span class="input_box">
-							<input type="text" class="form-control" id="name" placeholder="이름" maxlength="20" />
+							<input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" maxlength="20"/>
 						</span>
 					</div>
 					<div class="form-group">
 						<span class="input_box">
-							<input type="password" class="form-control" id="password" placeholder="비밀번호" maxlength="20"/>
+							<input type="text" class="form-control" name="name" id="name" placeholder="이름" maxlength="20" />
+						</span>
+					</div>				
+					<div class="form-group">
+						<span class="input_box">
+							<input type="text" class="form-control" name="addr" id="addr" placeholder="주소" maxlength="20" />
 						</span>
 					</div>
 					<div class="form-group">
 						<span class="input_box">
-							<input type="text" class="form-control" id="addr" placeholder="주소" maxlength="20" />
-						</span>
-					</div>
-					<div class="form-group">
-						<span class="input_box">
-							<input type="text" class="form-control" id="birth" placeholder="생일" maxlength="20" />
+							<input type="text" class="form-control" name="birth" id="birth" placeholder="생일" maxlength="20" />
 						</span>
 					</div>
 					<div class="input_button">
 						<span class="input_box">
-							<input type="button" class="btn btn-default" id="joinButton" value="회원가입"/>
+							<input type="button" class="btn btn-default" id="joinButton" value="회원가입" onclick="join()"/>
 							<input type="button" class="btn btn-default" id="cnclButton" value="취소하기"/>
 						</span>
 					</div>
@@ -65,5 +65,23 @@
 			</form>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function join() {
+			if(document.joinForm.userid.value == ''){
+				alert("아이디를 입력해 주세요");
+			}else if(document.joinForm.password.value == ''){
+				alert("비밀번호를 입력해 주세요");
+			}else if(document.joinForm.name.value == ''){
+				alert("이름을 입력해 주세요");
+			}else if(document.joinForm.addr.value == ''){
+				alert("주소를 입력해 주세요");
+			}else if(document.joinForm.birth.value == ''){
+				alert("생일을 입력해 주세요");
+			}else{
+				document.joinForm.submit();
+				return true;
+			}			
+		}
+	</script>
 </body>
 </html>
