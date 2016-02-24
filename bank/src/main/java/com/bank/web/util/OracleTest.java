@@ -21,9 +21,9 @@ public class OracleTest {
 			rs = stmt.executeQuery("SELECT email FROM employees");
 			String name = null;
 			while (rs.next()) {
-				name = rs.getString("email");
+				name = rs.getString("userid");
 			}
-			System.out.println("이름 : " + name);
+			System.out.println("이메일 : " + name);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
