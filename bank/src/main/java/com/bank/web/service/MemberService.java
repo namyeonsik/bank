@@ -12,4 +12,5 @@ public interface MemberService {
 	public int searchCountByName(String name);
 	public MemberVO login(MemberVO member);
 	public String update(MemberVO member);
+	public String existCheck(String userid);
 }
