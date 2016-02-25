@@ -1,16 +1,20 @@
 package com.bank.web.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.bank.web.domain.MemberVO;
 import com.bank.web.serviceImpl.MemberServiceImpl;
 
 @Controller
+@SessionAttributes("member")
 @RequestMapping("/member")
 public class MemberController {
 
@@ -26,33 +30,32 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(@RequestParam("userid") String userid, @RequestParam("password") String password, Model model) {
+	public String login(@RequestParam("userid") String userid, @RequestParam("password") String password, HttpSession session, Model model) {
 
 		System.out.println("넘어온 아이디 " + userid);
 		System.out.println("넘어온 비밀번호 " + password);
-		
+
 		MemberVO member = new MemberVO();
 		String existId = service.existCheck(userid);
 		String message = "", page = "";
-		
+
 		if (existId == null) {
 			message = "아이디가 존재하지 않습니다";
 			page = "member/loginForm";
 		} else {
-			System.out.println("들어오냐");
 			member.setUserid(userid);
 			member.setPassword(password);
 			member = service.login(member);
-			
-			if(member == null){
-				message = "아이디와 비번이 다릅니다";
+
+			if (member == null) {
+				message = "비번이 일치하지 않습니다";
 				page = "member/loginForm";
-			}else{
-				System.out.println("까꿍");
+			} else {
 				message = member.getName();
 				page = "account/myaccount";
 			}
-			model.addAttribute("message", message);			
+			session.setAttribute("member",member);
+			model.addAttribute("message", message);
 		}
 		return page;
 	}
@@ -90,4 +93,15 @@ public class MemberController {
 
 		return "global/home";
 	}
+
+	@RequestMapping(value = "/updateForm", method = RequestMethod.GET)
+	public String updateForm() {
+		return "member/updateForm";
+	}
+
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail() {
+		return "member/detail";
+	}
+
 }

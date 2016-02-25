@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h1>${message} 내 계좌정보 보기</h1>
+	<div><a href="${context}/member/detail">회원정보보기</a></div>
 	<div><a href="${context}/member/logout">로그아웃</a></div>
 	<br><br><br>
 	<img src="${pageContext.request.contextPath}/resources/min.jpg">
